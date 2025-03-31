@@ -22,10 +22,10 @@
 
 
 module Pc_reg(
-    input   wire    clk,
-    input   wire    rst,
-    output  reg     [`InstAddrBus]pc,
-    output  reg     ce
+    input   wire                clk,
+    input   wire                rst,
+    output  reg[`InstAddrBus]   pc,
+    output  reg                 ce
     );
     
     always@(posedge clk) begin
@@ -36,7 +36,7 @@ module Pc_reg(
     end
     
     always@(posedge clk) begin
-        if(ce == 1'b0)
+        if(ce == `ChipDisable)
             pc <= 32'h0000_0000;
         else
             pc <= pc + 4'h4;
